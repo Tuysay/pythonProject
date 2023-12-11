@@ -1,32 +1,17 @@
-{% extends 'basic.html' %}
 
+{% extends "basic.html" %}
 {% load static %}
 {% load bootstrap4 %}
-
 {% block content %}
-    <h4 class="mr-lg-5" style="padding-bottom: 10px">Здравствуйте, ...</h4>
-    <div class="h5 mr-lg-4 p-3 text-center fixed-start" style="border: solid 1px red; border-radius: 1em; margin-top: 80px ">Ваши заявки</div>
-    <div class="d-flex justify-content-start mr-lg-4 mb-2 text-secondary">
-        <a class="btn  text-dark border-danger m-3" href="#" style="">Все</a>
-        <a class="btn  text-dark  border-danger m-3" href="#" style="">Новые</a>
-        <a class="btn  text-dark border-danger m-3" href="#" style="">Выполненые</a>
-        <a class="btn  text-dark  border-danger m-3" href="#" style="">Принятые</a>
-    </div>
+  <h2 class="nav-link text-danger" style ="margin-left:20px; ">{{ user.username }}'s Profile</h2>
+{% if user.userprofile.profile_picture %}
+    <img src="{{ user.userprofile.profile_picture.url }}" alt="Profile Picture">
+{% endif %}
 
-            <div class="h5 mr-lg-4 p-3 text-center " style="border: solid 1px red; border-radius: 1em ">
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Save</button>
+  </form>
 
-                <img class="col-4" src="{{ item.photo.url }}" alt="Фото заявки">
-                <p class="p-3 mb-2 mr-auto"><b>Наименование:</b> {{ item.name }} <br>
-                    <b>Категория:</b> {{ item.Category }}
-                    <br> <b>Дата добавления:</b> {{ item.date }} <br> <b>Описание:</b> {{ item.description }}
-                    <br><b>Статус: </b>{{ item.status_verbose }}</p>
-
-
-                        <a class="delButton mt-auto ml-auto" hidden="true" href="#">
-                            <button type="button" class="btn btn-outline-danger">Удалить</button>
-                        </a>
-                    </a>
-
-
-            </div>
 {% endblock %}

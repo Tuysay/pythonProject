@@ -35,29 +35,35 @@
                     <a href="{% url 'index' %}" class="nav-link text-danger" style ="margin-left:20px; ">Главная</a>
                 </li>
 
+                    <li class="nav-item">
+                        <a href="#" class="nav-link text-danger" style ="margin-left:10px;">Создать опрос</a>
+                    </li>
+
+
             </ul>
-
+             {% if request.user.is_authenticated %}
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a href="{% url 'profile' %}" class="nav-link text-danger" style ="margin-left:10px;">Профиль</a>
+                        <a class="nav-link text-danger" href="{% url 'register' %}" style ="margin-left:20px;">Регистрация</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link text-danger" style ="margin-left:10px;">Выйти</a>
+                        <a class="nav-link text-danger" href="{% url 'login' %}" style ="margin-left:15px; margin-right: 20px">Войти</a>
                     </li>
                 </ul>
-
+            {% else %}
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link text-danger" href="#" style ="margin-left:20px;">Регистрация</a>
+                        <a href="{% url 'profile' %}" class="nav-link text-danger" style ="margin-left:10px;">Профиль ({{ user.username }})</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-danger" href="#" style ="margin-left:15px; margin-right: 20px">Войти</a>
+                        <a href="{% url 'index' %}" class="nav-link text-danger" style ="margin-left:10px;">Выйти</a>
                     </li>
                 </ul>
-
+            {% endif %}
         {% endblock %}
     </div>
 </nav>
+
 <main role="main" class="container " >
     <div class="starter-template">
         {% block content %}{% endblock %}

@@ -1,0 +1,11 @@
+{% extends "basic.html" %}
+
+{% load static %}
+{% load bootstrap4 %}
+
+{% block content %}
+    <h4 class="h5 mr-lg-4 p-3 text-center " style="border: solid 1px red; border-radius: 1em; margin-top: 80px ">Создание заявки</h4>
+    <label for="your_name">Your name: </label>
+    <input id="your_name" type="text" name="your_name" value="{{ current_name }}">
+    <input type="submit" value="OK">
+{% endblock %}

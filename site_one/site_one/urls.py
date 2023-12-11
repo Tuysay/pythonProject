@@ -16,20 +16,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf import settings
 from django.conf.urls.static import static
-
-from site_one import settings
-from site_onelab import views
 from site_onelab.views import page_not_found
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('site_onelab.urls')),
-    path('profile/', views.profile, name='profile'),
 ]
 
-urlpatterns += static(settings.STATIC_URL)
-# urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 
 handler404 = page_not_found
